@@ -2,6 +2,47 @@
 
 A full-featured Learning Management System built with Next.js, MongoDB, and NextAuth.js.
 
+## Project Structure
+
+```
+lms-system/
+├── frontend/                 # Frontend application
+│   ├── app/                 # Next.js app directory
+│   │   ├── (auth)/         # Authentication pages
+│   │   ├── (dashboard)/    # Dashboard pages
+│   │   │   ├── admin/     # Admin dashboard
+│   │   │   └── student/   # Student dashboard
+│   │   ├── components/    # Reusable UI components
+│   │   │   ├── ui/       # Basic UI components
+│   │   │   └── forms/    # Form components
+│   │   └── lib/          # Frontend utilities
+│   │       ├── hooks/    # Custom React hooks
+│   │       └── utils/    # Helper functions
+│   └── public/           # Static assets
+│
+├── backend/                # Backend application
+│   ├── api/              # API routes
+│   │   ├── auth/        # Authentication endpoints
+│   │   ├── courses/     # Course management endpoints
+│   │   ├── categories/  # Category management endpoints
+│   │   └── chapters/    # Chapter management endpoints
+│   ├── models/          # Mongoose models
+│   ├── lib/             # Backend utilities
+│   │   ├── db.js       # Database connection
+│   │   └── auth.js     # Authentication configuration
+│   └── middleware/      # Custom middleware
+│
+├── shared/               # Shared code between frontend and backend
+│   ├── constants/       # Shared constants
+│   ├── types/          # Shared TypeScript types
+│   └── utils/          # Shared utility functions
+│
+└── config/              # Configuration files
+    ├── next.config.mjs
+    ├── postcss.config.mjs
+    └── tailwind.config.js
+```
+
 ## Features
 
 - 🔐 Authentication with NextAuth.js (Credentials + Google)
@@ -13,17 +54,24 @@ A full-featured Learning Management System built with Next.js, MongoDB, and Next
 
 ## Tech Stack
 
-- **Frontend**: Next.js (App Router), Tailwind CSS
-- **Backend**: Next.js API Routes
-- **Database**: MongoDB with Mongoose
-- **Authentication**: NextAuth.js
-- **UI Components**: Radix UI
+### Frontend
+- Next.js (App Router)
+- Tailwind CSS
+- Radix UI Components
+- React Hooks
+- Custom UI Components
+
+### Backend
+- Next.js API Routes
+- MongoDB with Mongoose
+- NextAuth.js
+- Custom Middleware
 
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/adityavvvn/lms-system.git
 cd lms-system
 ```
 
@@ -35,11 +83,16 @@ npm install
 3. Set up environment variables:
 Create a `.env.local` file in the root directory with the following variables:
 ```
+# MongoDB Connection
 MONGODB_URI=mongodb://localhost:27017/lms-system
+
+# NextAuth Configuration
 NEXTAUTH_SECRET=your-secret-key-here
 NEXTAUTH_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Google OAuth (Optional)
+# GOOGLE_CLIENT_ID=your-google-client-id
+# GOOGLE_CLIENT_SECRET=your-google-client-secret
 ```
 
 4. Start MongoDB:
@@ -52,30 +105,25 @@ npm run dev
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+## Development Guidelines
 
-```
-/app
-  /api           → API routes
-  /auth          → Authentication pages
-  /admin         → Admin dashboard
-  /student       → Student dashboard
-/lib
-  /db.js         → MongoDB connection
-  /auth.js       → NextAuth configuration
-/models          → Mongoose models
-/middleware.js   → Route protection
-```
+### Frontend Development
+- Place all UI components in `frontend/app/components`
+- Use the `(dashboard)` directory for role-specific pages
+- Keep reusable hooks in `frontend/app/lib/hooks`
+- Use shared types from `shared/types`
 
-## Features to Implement
+### Backend Development
+- All API routes go in `backend/api`
+- Database models in `backend/models`
+- Shared utilities in `backend/lib`
+- Custom middleware in `backend/middleware`
 
-- [x] Project setup and authentication
-- [ ] Admin dashboard
-- [ ] Course management
-- [ ] Chapter management
-- [ ] Student enrollment
-- [ ] Progress tracking
-- [ ] Analytics
+### Shared Code
+- Use the `shared` directory for code used by both frontend and backend
+- Keep constants in `shared/constants`
+- Define shared types in `shared/types`
+- Place utility functions in `shared/utils`
 
 ## Contributing
 
